@@ -306,6 +306,7 @@ const Translation = () => {
     }
   };
 
+  // Function to split and playback long texts
   const handleAudioPlayback = () => {
     if (!translatedText.trim()) {
       setError("No translated text available for playback.");
@@ -313,16 +314,25 @@ const Translation = () => {
     }
 
     try {
-      const utterance = new SpeechSynthesisUtterance(translatedText);
-      utterance.lang = targetLanguage;
+      const sentences = translatedText.match(/[^.!?]+[.!?]+/g) || [translatedText];
+      const playNextSentence = (index) => {
+        if (index >= sentences.length) return;
 
-      utterance.onerror = () => {
-        setError("An error occurred during audio playback.");
+        const utterance = new SpeechSynthesisUtterance(sentences[index]);
+        utterance.lang = targetLanguage;
+
+        utterance.onend = () => playNextSentence(index + 1);
+
+        utterance.onerror = () => {
+          setError("An error occurred during audio playback.");
+        };
+
+        speechSynthesis.speak(utterance);
       };
 
-      speechSynthesis.speak(utterance);
+      playNextSentence(0);
     } catch (err) {
-      setError("Failed to play audio. Please try again.");
+      setError("Unable to start audio playback. Please try again.");
       console.error("Audio Playback Error:", err);
     }
   };
@@ -345,7 +355,6 @@ const Translation = () => {
     { code: "es", name: "Spanish" },
     { code: "hi", name: "Hindi" },
     { code: "ar", name: "Arabic" },
-    { code: "bn", name: "Bengali" },
     { code: "pt", name: "Portuguese" },
     { code: "ru", name: "Russian" },
     { code: "ja", name: "Japanese" },
@@ -353,10 +362,8 @@ const Translation = () => {
     { code: "fr", name: "French" },
     { code: "ko", name: "Korean" },
     { code: "it", name: "Italian" },
-    { code: "ur", name: "Urdu" },
     { code: "tr", name: "Turkish" },
     { code: "vi", name: "Vietnamese" },
-    { code: "ta", name: "Tamil" },
     { code: "pl", name: "Polish" },
     { code: "nl", name: "Dutch" },
     { code: "sv", name: "Swedish" },
@@ -479,7 +486,7 @@ const Translation = () => {
           onClick={handleAudioPlayback}
           disabled={!translatedText.trim()}
         >
-          Play Audio
+          Speak
         </button>
         </div>
     </div>
