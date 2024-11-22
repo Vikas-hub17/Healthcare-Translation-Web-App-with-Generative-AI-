@@ -3,6 +3,10 @@
 ## Project Overview
 The Healthcare Translation Web App is a prototype designed to bridge communication gaps in multilingual healthcare settings. It leverages generative AI to provide real-time voice-to-text transcription, translation, and audio playback. The application aims to enhance interactions between patients and healthcare providers by enabling seamless multilingual communication.
 
+![Screenshot 2024-11-22 195428](https://github.com/user-attachments/assets/a3215015-d926-4599-a0c9-ff8eb9bab1f5)
+
+![Screenshot 2024-11-22 195435](https://github.com/user-attachments/assets/f5a6437f-1567-4817-8768-e7127925428c)
+
 ---
 
 ## Features
