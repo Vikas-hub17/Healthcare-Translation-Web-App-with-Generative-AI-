@@ -36,8 +36,8 @@ The Healthcare Translation Web App is a prototype designed to bridge communicati
 ## Technologies Used
 
 ### Frontend
-- **Framework:** Next.js 14
-- **Language:** TypeScript
+- **Framework:** ReactJs
+- **Language:** Javascript
 - **Styling:** Tailwind CSS
 - **Features:** Server-side rendering (SSR) and static generation for enhanced performance and SEO.
 
@@ -49,7 +49,7 @@ The Healthcare Translation Web App is a prototype designed to bridge communicati
 
 ### Prerequisites
 - npm or yarn package manager
-- Vercel account for deployment (optional)
+- Netlify account (optional)
 
 ### Steps
 1. Clone the repository:
